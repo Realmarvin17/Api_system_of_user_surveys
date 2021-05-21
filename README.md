@@ -36,9 +36,13 @@ python manage.py migrate
 python manage.py createsuperuser
 
 Username (leave blank to use 'admin'): admin
+
 Email address: admin@admin.com
+
 Password: ********
+
 Password (again): ********
+
 Superuser created successfully.
 
 •	Команда для запуска приложения
@@ -48,10 +52,15 @@ python manage.py runserver
 Документация API (создал автодокументирование API на swagger доступно по адресу http://127.0.0.1:8000/swagger/ )
 
 Чтобы получить токен пользователя:
+
 •	Request method: GET
+
 •	URL: http://localhost:8000/api/login/
+
 •	Body:
+
 o	username:
+
 o	password:
 
 •	Example:
@@ -60,14 +69,23 @@ curl --location --request GET 'http://localhost:8000/api/login/' \
 --form 'password=%password'
 
 Чтобы создать опрос:
+
 •	Request method: POST
+
 •	URL: http://localhost:8000/api/surveysApp/create/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Body:
+
 o	survey_name: name of survey
+
 o	pub_date: publication date can be set only when survey is created, format: YYYY-MM-DD HH:MM:SS
+
 o	end_date: survey end date, format: YYYY-MM-DD HH:MM:SS
+
 o	survey_description: description of survey
 
 •	Example:
@@ -79,15 +97,25 @@ curl --location --request POST 'http://localhost:8000/api/surveysApp/create/' \
 --form 'survey_description=%survey_description'
 
 Обновить опрос:
+
 •	Request method: PATCH
+
 •	URL: http://localhost:8000/api/surveysApp/update/[survey_id]/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Param:
+
 o	survey_id
+
 •	Body:
+
 o	survey_name: name of survey
+
 o	end_date: survey end date, format: YYYY-MM-DD HH:MM:SS
+
 o	survey_description: description of survey
 
 •	Example:
@@ -98,19 +126,29 @@ curl --location --request PATCH 'http://localhost:8000/api/surveysApp/update/[su
 --form 'survey_description=%survey_description'
 
 Удалить опрос:
+
 •	Request method: DELETE
+
 •	URL: http://localhost:8000/api/surveysApp/update/[survey_id]
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Param:
+
 o	survey_id Example:
 curl --location --request DELETE 'http://localhost:8000/api/surveysApp/update/[survey_id]/' \
 --header 'Authorization: Token %userToken'
 
 Посмотреть все опросы:
+
 •	Request method: GET
+
 •	URL: http://localhost:8000/api/surveysApp/view/
+
 •	Header:
+
 o	Authorization: Token userToken
 
 •	Example:
@@ -118,9 +156,13 @@ curl --location --request GET 'http://localhost:8000/api/surveysApp/view/' \
 --header 'Authorization: Token %userToken'
 
 Просмотр текущих активных опросов:
+
 •	Request method: GET
+
 •	URL: http://localhost:8000/api/surveysApp/view/active/
+
 •	Header:
+
 o	Authorization: Token userToken
 
 •	Example:
@@ -128,13 +170,21 @@ curl --location --request GET 'http://localhost:8000/api/surveysApp/view/active/
 --header 'Authorization: Token %userToken'
 
 Создаем вопрос:
+
 •	Request method: POST
+
 •	URL: http://localhost:8000/api/question/create/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Body:
+
 o	survey: id of survey
+
 o	question_text:
+
 o	question_type: can be only one, multiple or text
 
 •	Example:
@@ -145,15 +195,25 @@ curl --location --request POST 'http://localhost:8000/api/question/create/' \
 --form 'question_type=%question_type \
 
 Обновляем вопрос:
+
 •	Request method: PATCH
+
 •	URL: http://localhost:8000/api/question/update/[question_id]/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Param:
+
 o	question_id
+
 •	Body:
+
 o	survey: id of survey
+
 o	question_text: question
+
 o	question_type: can be only one, multiple or text
 
 •	Example:
@@ -164,11 +224,17 @@ curl --location --request PATCH 'http://localhost:8000/api/question/update/[ques
 --form 'question_type=%question_type \
 
 Удаляем вопрос:
+
 •	Request method: DELETE
+
 •	URL: http://localhost:8000/api/question/update/[question_id]/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Param:
+
 o	question_id
 
 •	Example:
@@ -179,12 +245,19 @@ curl --location --request DELETE 'http://localhost:8000/api/question/update/[que
 --form 'question_type=%question_type \
 
 Создаем выбор:
+
 •	Request method: POST
+
 •	URL: http://localhost:8000/api/choice/create/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Body:
+
 o	question: id of question
+
 o	choice_text: choice
 
 •	Example:
@@ -193,42 +266,71 @@ curl --location --request POST 'http://localhost:8000/api/choice/create/' \
 --form 'question=%question' \
 --form 'choice_text=%choice_text'
 Обновляем выбор:
+
 •	Request method: PATCH
+
 •	URL: http://localhost:8000/api/choice/update/[choice_id]/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Param:
+
 o	choice_id
+
 •	Body:
+
 o	question: id of question
+
 o	choice_text: choice
+
 •	Example:
 curl --location --request PATCH 'http://localhost:8000/api/choice/update/[choice_id]/' \
 --header 'Authorization: Token %userToken' \
 --form 'question=%question' \
 --form 'choice_text=%choice_text'
+
 Обновляем выбор:
+
 •	Request method: DELETE
+
 •	URL: http://localhost:8000/api/choice/update/[choice_id]/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Param:
+
 o	choice_id
+
 •	Example:
 curl --location --request DELETE 'http://localhost:8000/api/choice/update/[choice_id]/' \
 --header 'Authorization: Token %userToken' \
 --form 'question=%question' \
 --form 'choice_text=%choice_text'
+
 Создаем ответ:
+
 •	Request method: POST
+
 •	URL: http://localhost:8000/api/answer/create/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Body:
+
 o	survey: id of survey
+
 o	question: id of question
+
 o	choice: if question type is one or multiple then it’s id of choice else null
+
 o	choice_text: if question type is text then it’s text based answer else null
+
 •	Example:
 curl --location --request POST 'http://localhost:8000/api/answer/create/' \
 --header 'Authorization: Token %userToken' \
@@ -236,18 +338,31 @@ curl --location --request POST 'http://localhost:8000/api/answer/create/' \
 --form 'question=%question' \
 --form 'choice=%choice \
 --form 'choice_text=%choice_text'
+
 Обновляем ответ:
+
 •	Request method: PATCH
+
 •	URL: http://localhost:8000/api/answer/update/[answer_id]/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Param:
+
 o	answer_id
+
 •	Body:
+
 o	survey: id of survey
+
 o	question: id of question
+
 o	choice: if question type is one or multiple then it’s id of choice else null
+
 o	choice_text: if question type is text then it’s text based answer else null
+
 •	Example:
 curl --location --request PATCH 'http://localhost:8000/api/answer/update/[answer_id]' \
 --header 'Authorization: Token %userToken' \
@@ -255,23 +370,39 @@ curl --location --request PATCH 'http://localhost:8000/api/answer/update/[answer
 --form 'question=%question' \
 --form 'choice=%choice \
 --form 'choice_text=%choice_text'
+
 Удаляем ответ:
+
 •	Request method: DELETE
+
 •	URL: http://localhost:8000/api/answer/update/[answer_id]/
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Param:
+
 o	answer_id
+
 •	Example:
 curl --location --request DELETE 'http://localhost:8000/api/answer/update/[answer_id]' \
 --header 'Authorization: Token %userToken'
+
 Просматриваем ответы пользователя:
+
 •	Request method: GET
+
 •	URL: http://localhost:8000/api/answer/view/[user_id]/
+
 •	Param:
+
 o	user_id
+
 •	Header:
+
 o	Authorization: Token userToken
+
 •	Example:
 curl --location --request GET 'http://localhost:8000/api/answer/view/[user_id]' \
 --header 'Authorization: Token %userToken'
